@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TreeFocus">
         <activity
+            android:name=".signupscreen"
+            android:exported="false" />
+        <activity
             android:name=".signinscreen"
             android:exported="false" />
         <activity

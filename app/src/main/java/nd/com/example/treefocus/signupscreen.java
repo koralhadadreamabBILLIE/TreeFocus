@@ -1,9 +1,6 @@
 package nd.com.example.treefocus;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,36 +8,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity
-{
+public class signupscreen extends AppCompatActivity {
 
-    private Handler handler = new Handler();
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            Intent intent = new Intent(MainActivity.this, signinscreen.class);
-            startActivity(intent);
-        }
-    };
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        handler.postDelayed(runnable, 3000);
-    }
-
-    /// ljhkjh;lijl;kjlkjlk
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.splashscreen);
+        setContentView(R.layout.activity_signupscreen);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.textEmail), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
     }
 }
