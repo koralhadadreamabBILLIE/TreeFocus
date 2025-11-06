@@ -21,6 +21,7 @@ private TextView tvPassword;
 private Button btnSignin;
 private EditText etEmail;
 private EditText etPassword;
+    private Button btnsignup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +38,24 @@ private EditText etPassword;
         tvEmail = findViewById(R.id.tvEmail);
         etEmail = findViewById(R.id.etEmail);
         tvPassword = findViewById(R.id.tvPassword);
-        etPassword = findViewById(R.id.etPassword);
+        EditText etPassword = findViewById(R.id.etPassword);
         btnSignin = findViewById(R.id.btnSignin);
+        btnsignup = findViewById(R.id.btnsignup);
         btnSignin.setOnClickListener(v -> {
-            Intent intent = new Intent(signinscreen.this,MainActivity.class);
+            Intent intent = new Intent(signinscreen.this, MainActivity.class);
+            startActivity(intent);
+
+
+
+        });
+        btnsignup.setOnClickListener(v -> {
+            Intent intent1 = new Intent(signinscreen.this, testact.class);
+            startActivity(intent1);
+        });
+        btnSignin.setOnClickListener(v -> {
+            Intent intent = new Intent(signinscreen.this, Dashboardscreen.class);
             startActivity(intent);
         });
+
     }
 }

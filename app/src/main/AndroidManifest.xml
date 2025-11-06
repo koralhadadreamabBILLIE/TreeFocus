@@ -12,6 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TreeFocus">
         <activity
+            android:name=".Dashboardscreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".testact"
+            android:exported="false" />
+        <activity
             android:name=".signupscreen"
             android:exported="false" />
         <activity

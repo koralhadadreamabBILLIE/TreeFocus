@@ -58,11 +58,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="password"
-        android:inputType="numberPassword"
-        android:marqueeRepeatLimit="90"
+        android:hint="Password"
+        android:inputType="textEmailAddress"
         android:textSize="34sp" />
-
     <Button
         android:id="@+id/btnSignin"
         android:layout_width="match_parent"
@@ -73,5 +71,11 @@
         android:visibility="visible"
         app:rippleColor="#E46EA4"
         tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnsignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Signup" />
 
 </LinearLayout>
