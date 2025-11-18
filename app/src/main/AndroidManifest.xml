@@ -16,7 +16,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".testact"
+            android:name=".signupscreen"
             android:exported="false" />
         <activity
             android:name=".signupscreen"

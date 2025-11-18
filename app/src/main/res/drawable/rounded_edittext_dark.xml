@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Use the same dark green as your dashboard buttons -->
+    <solid android:color="@color/dark_green" />
+
+    <!-- Make the corners very rounded for a pill shape -->
+    <corners android:radius="100dp" />
+</shape>

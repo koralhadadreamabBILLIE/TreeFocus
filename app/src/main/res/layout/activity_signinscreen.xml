@@ -1,81 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/textEmail"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:padding="32dp"
     tools:context=".signinscreen">
 
+    <!-- Your App Logo (using the tree image) -->
     <ImageView
         android:id="@+id/imv"
-        android:layout_width="164dp"
-        android:layout_height="148dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/image_16_10_2025_at_8_28"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="47dp" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/focus_tree_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Welcome Text -->
     <TextView
         android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:autoSizeTextType="none"
-        android:ellipsize="middle"
-        android:gravity="center"
-        android:marqueeRepeatLimit="30"
+        android:layout_marginTop="32dp"
         android:text="Welcome back! Let's get focused."
-        android:textSize="34sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="225dp" />
+        android:textAlignment="center"
+        android:textColor="@color/text_primary"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imv" />
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="E-mail"
-        android:textSize="30sp" />
-
+    <!-- Email Input Field -->
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/rounded_edittext_dark"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
-        android:textSize="34sp" />
+        android:paddingHorizontal="24dp"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
 
-    <TextView
-        android:id="@+id/tvPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:textSize="30sp" />
-
+    <!-- Password Input Field -->
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_edittext_dark"
         android:hint="Password"
-        android:inputType="textEmailAddress"
-        android:textSize="34sp" />
+        android:inputType="textPassword"
+        android:paddingHorizontal="24dp"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etEmail" />
+
+    <!-- Sign In Button (uses the pink button style from the dashboard) -->
     <Button
         android:id="@+id/btnSignin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#E46EA4"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button_pink"
         android:text="Sign In"
-        android:textColorLink="#E7478F"
-        android:visibility="visible"
-        app:rippleColor="#E46EA4"
-        tools:visibility="visible" />
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/light_pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etPassword" />
 
-    <Button
-        android:id="@+id/btnsignup"
-        android:layout_width="match_parent"
+    <!-- Sign Up Prompt (uses TextViews for better styling) -->
+    <TextView
+        android:id="@+id/signup_prompt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Signup" />
+        android:layout_marginTop="24dp"
+        android:text="Don't have an account? "
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnsignup"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSignin" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/btnsignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textColor="@color/light_pink"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/signup_prompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/signup_prompt"
+        app:layout_constraintTop_toTopOf="@id/signup_prompt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

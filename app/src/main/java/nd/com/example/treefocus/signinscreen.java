@@ -4,58 +4,50 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.TextView; // Make sure this is TextView
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class signinscreen extends AppCompatActivity {
-private ImageView imv;
-private TextView tvWelcome;
-private TextView tvEmail;
-private TextView tvPassword;
-private Button btnSignin;
-private EditText etEmail;
-private EditText etPassword;
-    private Button btnsignup;
+
+    // We only need to declare the variables we will actually use in the code
+    private EditText etEmail;
+    private EditText etPassword;
+    private Button btnSignin;
+    private TextView btnsignup; // Changed to TextView to match the new XML
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        // The EdgeToEdge code can be removed for simplicity
         setContentView(R.layout.activity_signinscreen);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.textEmail), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
 
-        });
-        imv = findViewById(R.id.imv);
-        tvWelcome = findViewById(R.id.tvWelcome);
-        tvEmail = findViewById(R.id.tvEmail);
+        // Find the views from the layout
         etEmail = findViewById(R.id.etEmail);
-        tvPassword = findViewById(R.id.tvPassword);
-        EditText etPassword = findViewById(R.id.etPassword);
+        etPassword = findViewById(R.id.etPassword);
         btnSignin = findViewById(R.id.btnSignin);
-        btnsignup = findViewById(R.id.btnsignup);
+        btnsignup = findViewById(R.id.btnsignup); // This ID now refers to a TextView
+
+        // --- Set Click Listeners ---
+
+        // This is the ONLY listener for the "Sign In" button.
+        // It takes the user to the Dashboard.
         btnSignin.setOnClickListener(v -> {
-            Intent intent = new Intent(signinscreen.this, MainActivity.class);
-            startActivity(intent);
+            // TODO: In the future, you can add code here to check if the email and password are correct.
+            Toast.makeText(signinscreen.this, "Signing in...", Toast.LENGTH_SHORT).show();
 
-
-
-        });
-        btnsignup.setOnClickListener(v -> {
-            Intent intent1 = new Intent(signinscreen.this, testact.class);
-            startActivity(intent1);
-        });
-        btnSignin.setOnClickListener(v -> {
             Intent intent = new Intent(signinscreen.this, Dashboardscreen.class);
             startActivity(intent);
         });
 
+        // This listener for the "Sign Up" text takes the user to the Sign Up screen.
+        btnsignup.setOnClickListener(v -> {
+            // NOTE: 'testact' is likely your sign up screen. Consider renaming it to 'SignUpScreen' for clarity.
+            Toast.makeText(signinscreen.this, "Going to Sign Up page...", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(signinscreen.this, signupscreen.class);
+            startActivity(intent);
+        });
     }
 }

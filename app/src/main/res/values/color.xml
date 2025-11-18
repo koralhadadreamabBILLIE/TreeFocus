@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Your existing custom colors -->
+    <color name="app_background">#2C2427</color> <!-- Dark background -->
+    <color name="dark_green">#344B3F</color>   <!-- Dark green for cards/buttons -->
+    <color name="light_pink">#E889B9</color>    <!-- Pink for the main button -->
+    <color name="text_primary">#FFFFFF</color>   <!-- White text -->
+    <color name="text_secondary">#C9C5CA</color> <!-- Lighter gray text -->
+
+    <!-- ADD THIS NEW BLUE COLOR FOR THE SIGN UP BUTTON -->
+    <color name="signup_blue_button">#4A85E1</color>
+
+    <!-- Default colors -->
+    <color name="black">#ED9BE8</color> <!-- By the way, this is a light pink, not black. You might want to change it to #000000 -->
+    <color name="white">#FFFFFFFF</color>
+</resources>
