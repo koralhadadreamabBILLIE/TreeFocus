@@ -2,52 +2,82 @@ package nd.com.example.treefocus;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView; // Make sure this is TextView
+import android.widget.Button;import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class signinscreen extends AppCompatActivity {
 
-    // We only need to declare the variables we will actually use in the code
+    // Declare the views we need to interact with
     private EditText etEmail;
     private EditText etPassword;
     private Button btnSignin;
-    private TextView btnsignup; // Changed to TextView to match the new XML
+    private TextView btnsignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // The EdgeToEdge code can be removed for simplicity
         setContentView(R.layout.activity_signinscreen);
 
         // Find the views from the layout
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnSignin = findViewById(R.id.btnSignin);
-        btnsignup = findViewById(R.id.btnsignup); // This ID now refers to a TextView
+        btnsignup = findViewById(R.id.btnsignup);
 
         // --- Set Click Listeners ---
 
-        // This is the ONLY listener for the "Sign In" button.
-        // It takes the user to the Dashboard.
+        // Listener for the "Sign In" button
         btnSignin.setOnClickListener(v -> {
-            // TODO: In the future, you can add code here to check if the email and password are correct.
-            Toast.makeText(signinscreen.this, "Signing in...", Toast.LENGTH_SHORT).show();
+            // 1. Get the text from the input fields
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
 
-            Intent intent = new Intent(signinscreen.this, Dashboardscreen.class);
-            startActivity(intent);
+            // 2. Call your validation method
+            if (validateInputs(email, password)) {
+                // If validation is successful:
+                Toast.makeText(signinscreen.this, "Signing in...", Toast.LENGTH_SHORT).show();
+
+                // TODO: In the future, you will check the email and password against a database here.
+                // For now, we just go to the dashboard.
+
+                Intent intent = new Intent(signinscreen.this, Dashboardscreen.class);
+                startActivity(intent);
+            }
+            // If validation fails, the `validateInputs` method will show the errors.
         });
 
-        // This listener for the "Sign Up" text takes the user to the Sign Up screen.
+        // Listener for the "Sign Up" text
         btnsignup.setOnClickListener(v -> {
-            // NOTE: 'testact' is likely your sign up screen. Consider renaming it to 'SignUpScreen' for clarity.
-            Toast.makeText(signinscreen.this, "Going to Sign Up page...", Toast.LENGTH_SHORT).show();
-
+            // Take the user to the Sign Up screen
             Intent intent = new Intent(signinscreen.this, signupscreen.class);
             startActivity(intent);
         });
+    } // <-- *** The onCreate method ends HERE ***
+
+    /**
+     * This is a helper method to validate the user's sign-in inputs.
+     * It is correctly placed directly inside the signinscreen class.
+     */
+    private boolean validateInputs(String email, String password) {
+        // Clear any previous errors first
+        etEmail.setError(null);
+        etPassword.setError(null);
+
+        boolean isValid = true;
+
+        if (email.isEmpty()) {
+            etEmail.setError("Email cannot be empty");
+            isValid = false;
+        }
+
+        if (password.isEmpty()) {
+            etPassword.setError("Password cannot be empty");
+            isValid = false;
+        }
+
+        return isValid;
     }
-}
+
+} // <-- *** The signinscreen class ends HERE ***

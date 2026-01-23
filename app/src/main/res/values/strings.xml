@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TreeFocus</string>
+
+    <!-- ADD THIS ARRAY -->
+    <string-array name="study_types">
+        <item>Pomodoro</item>
+        <item>Stopwatch</item>
+        <item>Custom Timer</item>
+    </string-array>
+
 </resources>

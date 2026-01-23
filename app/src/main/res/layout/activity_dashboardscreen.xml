@@ -6,28 +6,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
+    android:scrollbarSize="2dp"
     tools:context=".Dashboardscreen">
 
-    <!-- Toolbar at the top -->
+    <!-- ================== NEW TOOLBAR SECTION ================== -->
+    <!-- ======================================================== -->
 
 
     <!-- Pink Tree Image -->
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="396dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="8dp"
+        android:scrollbarSize="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/settings_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:padding="4dp"
+            android:src="@drawable/ic_tree_logo" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="FocusTree"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/profile_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
+            android:background="@drawable/rounded_button_green"
+            android:backgroundTint="#E889B9"
+            android:padding="8dp"
+            android:src="@drawable/ic_profile"
+            app:tint="@color/text_secondary" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Adjusted: Now below the toolbar -->
+
     <!-- Motivational Text -->
 
+    <!-- Study Streak Card -->
+
+    <!-- Start Study Session Button -->
     <ImageView
         android:id="@+id/tree_image"
         android:layout_width="240dp"
         android:layout_height="240dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/focus_tree_image"
-        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.8"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/motivational_text"
@@ -43,20 +91,20 @@
         app:layout_constraintTop_toBottomOf="@id/tree_image"
         app:layout_constraintWidth_percent="0.8" />
 
-    <!-- Study Streak Card -->
     <LinearLayout
         android:id="@+id/streak_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_button_green"
-        app:layout_constraintTop_toBottomOf="@id/motivational_text"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.85"
-        android:layout_marginTop="24dp">
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/motivational_text"
+        app:layout_constraintWidth_percent="0.85">
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,7 +123,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Start Study Session Button -->
     <Button
         android:id="@+id/start_session_button"
         android:layout_width="0dp"
@@ -87,10 +134,10 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:backgroundTint="@null"
+        app:backgroundTint="@color/light_pink"
         app:layout_constraintEnd_toEndOf="@id/streak_card"
         app:layout_constraintStart_toStartOf="@id/streak_card"
-        app:layout_constraintTop_toBottomOf="@id/streak_card" /> <!-- Important: Prevents system from overriding background color -->
+        app:layout_constraintTop_toBottomOf="@id/streak_card" />
 
     <!-- App Blocking Settings Button -->
     <Button
@@ -104,7 +151,7 @@
         android:textColor="@color/text_primary"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:backgroundTint="@null"
+        app:backgroundTint="@color/dark_green"
         app:layout_constraintEnd_toEndOf="@id/streak_card"
         app:layout_constraintStart_toStartOf="@id/streak_card"
         app:layout_constraintTop_toBottomOf="@id/start_session_button" />
@@ -121,7 +168,7 @@
         android:textColor="@color/text_primary"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:backgroundTint="@null"
+        app:backgroundTint="@color/dark_green"
         app:layout_constraintEnd_toEndOf="@id/streak_card"
         app:layout_constraintStart_toStartOf="@id/streak_card"
         app:layout_constraintTop_toBottomOf="@id/app_blocking_button" />
@@ -129,16 +176,16 @@
     <!-- Final Quote at the bottom -->
     <TextView
         android:id="@+id/quote_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="&quot;The secret of getting ahead is getting started.&quot;"
         android:textAlignment="center"
         android:textColor="@color/text_secondary"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
