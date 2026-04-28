@@ -5,13 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_background"
     tools:context=".data.MyTaskTable.data.AddStudyTaskActivity">
 
-    <!-- A Toolbar at the top to give the screen a title -->
+    <!-- A Toolbar styled with the Blossom Pink -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,22 +22,31 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title="Add New Study Task"
-            app:titleTextColor="@android:color/white" />
+            android:background="@color/app_background"
+            app:title="Create New Task"
+            app:titleTextColor="#E58EBB" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Input field for the Task Name -->
+    <!-- Task Name Input -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldTaskName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Task Name"
+        android:layout_marginEnd="20dp"
+        android:hint="What are we focusing on?"
+        android:textColorHint="#99E58EBB"
+        app:boxBackgroundColor="#334D3F"
+        app:boxCornerRadiusTopStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="1dp"
+        app:hintTextColor="#E58EBB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
@@ -44,88 +55,154 @@
             android:id="@+id/editTextTaskName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="textCapWords" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- NEW: Spinner to select the Study Type -->
-    <TextView
-        android:id="@+id/textViewStudyTypeLabel"
+    <!-- Study Type Label -->
+    <!-- Study Type Label -->
+    <TextView        android:id="@+id/textViewStudyTypeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Study Type"
-        android:textSize="16sp"
-        android:textColor="?android:attr/textColorPrimary"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="Choose Study Mode"
+        android:textColor="#C8E6C9"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFieldTaskName" />
 
-    <Spinner
-        android:id="@+id/spinnerStudyType"
+    <!-- Container for Spinner and the Custom Time Inputs -->
+    <LinearLayout
+        android:id="@+id/spinnerContainer"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@drawable/abc_edit_text_material"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/textFieldTaskName"
         app:layout_constraintStart_toStartOf="@+id/textFieldTaskName"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStudyTypeLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStudyTypeLabel">
 
-    <!-- Input field for the Task Description -->
+        <!-- The Spinner itself -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#334D3F">
+            <Spinner
+                android:id="@+id/spinnerStudyType"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#E58EBB"
+                android:popupBackground="#334D3F" />
+        </FrameLayout>
+
+        <!-- The Custom Time Inputs (HH:MM) -->
+        <LinearLayout
+            android:id="@+id/layout_custom_time_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:visibility="invisible"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_custom_hours"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:background="#334D3F"
+                android:hint="HH"
+                android:textColorHint="#66E58EBB"
+                android:textColor="#FFFFFF"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : "
+                android:textColor="#E58EBB"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_custom_minutes"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:background="#334D3F"
+                android:hint="MM"
+                android:textColorHint="#66E58EBB"
+                android:textColor="#FFFFFF"
+                android:inputType="number"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Task Description Input -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldTaskDescription"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Description (Optional)"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="24dp"
+        android:hint="Notes / Details"
+        android:textColorHint="#99E58EBB"
+        app:boxBackgroundColor="#334D3F"
+        app:boxCornerRadiusTopStart="15dp"
+        app:boxCornerRadiusTopEnd="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxStrokeWidth="0dp"
+        app:hintTextColor="#E58EBB"
         app:layout_constraintBottom_toTopOf="@+id/buttonSaveTask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerStudyType">
+        app:layout_constraintTop_toBottomOf="@+id/spinnerContainer">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTaskDescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top|start"
+            android:textColor="#FFFFFF"
             android:inputType="textMultiLine" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Save Button to confirm adding the task -->
+    <!-- Save Button: Blossom Pink -->
     <Button
         android:id="@+id/buttonSaveTask"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:padding="12dp"
-        android:text="Save Task"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#E58EBB"
+        android:text="Grow Task"
+        android:textAllCaps="false"
+        android:textColor="#1E1B1B"
         android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonCancel"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Cancel Button to go back without saving -->
+    <!-- Cancel Button: Simple Text -->
     <Button
         android:id="@+id/buttonCancel"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
         android:text="Cancel"
+        android:textColor="#C8E6C9"
         app:layout_constraintBottom_toBottomOf="@+id/buttonSaveTask"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonSaveTask"
         app:layout_constraintTop_toTopOf="@+id/buttonSaveTask" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

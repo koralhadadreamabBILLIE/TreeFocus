@@ -11,14 +11,18 @@ import nd.com.example.treefocus.R;
 /**
  * This is our "Chef" class. It adapts a list of StudyTask data into the RecyclerView.
  */
+//The StudyTaskAdapter's job is to take a list of StudyTask data and create a visual, scrollable list of items from it.
+// It's the bridge between your data and your UI.
 public class StudyTaskAdapter extends RecyclerView.Adapter<StudyTaskAdapter.StudyTaskViewHolder> {
 
     // The list of all tasks that the adapter will manage.
-    private List<StudyTask> tasks = new ArrayList<>();
+    private List<StudyTask> tasks = new ArrayList<>(); //هذه قائمة تحتوي على جميع عناصر StudyTask التي يجب عرضها على الشاشة. وهي مصدر البيانات للمحول.
 
     /**
-     * This method is called by the RecyclerView when it needs a new "plate" (ViewHolder).
-     * This is where we inflate our item_study_task.xml layout.
+     * This method is called by the RecyclerView when it needs a new item on the list.
+     * The LayoutInflater takes my XML layout for a single row, item_study_task.xml, and turns it into a View object in Java.
+     * It then creates a new StudyTaskViewHolder (which I'll explain next) and passes that newly created View to it.
+     * Essentially, its job is to build a brand new, empty list item."
      */
     @NonNull
     @Override
@@ -30,7 +34,7 @@ public class StudyTaskAdapter extends RecyclerView.Adapter<StudyTaskAdapter.Stud
     }
 
     /**
-     * This method is called by the RecyclerView to display the data at a specific position.
+     * يتم استدعاء هذه الطريقة بواسطة RecyclerView لعرض البيانات في موضع محدد.
      * This is where the chef puts the food (data) on the plate (ViewHolder).
      */
     @Override
@@ -53,6 +57,7 @@ public class StudyTaskAdapter extends RecyclerView.Adapter<StudyTaskAdapter.Stud
 
     /**
      * A helper method to update the list of tasks in the adapter from our Activity.
+     * My StudyListActivity calls this method when it gets an updated list of tasks from the database.
      */
     public void setTasks(List<StudyTask> tasks) {
         this.tasks.clear();
@@ -61,7 +66,7 @@ public class StudyTaskAdapter extends RecyclerView.Adapter<StudyTaskAdapter.Stud
     }
 
     /**
-     * The ViewHolder class represents a single "plate" in our list.
+     * The ViewHolder class represents one single item in the list.
      * It holds the references to the individual views inside our item_study_task.xml layout.
      */
     class StudyTaskViewHolder extends RecyclerView.ViewHolder {

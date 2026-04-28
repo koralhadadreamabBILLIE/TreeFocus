@@ -13,7 +13,7 @@ import nd.com.example.treefocus.data.MyTaskTable.data.MyUserTable.Student;
 /**
  * واجهة تحوي عمليات\دوال\استعلامات على قاعدة البيانات
  */
-@Dao//لتحديد ان الواجهخة تحوي استعلامات على قاعدة بايانات
+@Dao//لتحديد ان الواجهة تحوي استعلامات على قاعدة بايانات
 public interface StudentQuery
 {   //استخراج جميع المستعملين
     @Query("SELECT * FROM Student")

@@ -19,6 +19,21 @@ public class Student
     public String email;//بحالة لم يتم اعطاء اسم للعامود يكون اسم الصفه هو اسم العامود
     public String phone;
     public String passw;
+    public Student () {}
+    public Student (long keyid, String fullName,String email,String phone,String passw)
+    {
+        this.keyid= keyid;
+        this.fullName= fullName;
+        this.email=email;
+        this.phone=phone;
+        this.passw=passw;
+    }
+
+    public Student(String email, String password) {
+        this.passw=password;
+        this.email=email;
+
+    }
 
     public String getPassw() {
         return passw;

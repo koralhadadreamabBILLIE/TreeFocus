@@ -10,8 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import nd.com.example.treefocus.data.MyTaskTable.data.AddStudyTaskActivity;
-
+// this line is the line that calls the lifecycle activities/methods (onCreate, onResume, etc)
 public class Dashboardscreen extends AppCompatActivity {
 
     // --- Declare UI elements ---
@@ -24,7 +23,6 @@ public class Dashboardscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboardscreen);
-
         // --- Find all the views by their ID ---
         settingsIcon = findViewById(R.id.settings_icon);
         profileIcon = findViewById(R.id.profile_icon);
@@ -39,14 +37,23 @@ public class Dashboardscreen extends AppCompatActivity {
             Toast.makeText(Dashboardscreen.this, "Settings clicked!", Toast.LENGTH_SHORT).show();
         });
 
+        // --- Set click listener for the Profile Icon ---
         profileIcon.setOnClickListener(v -> {
-            // TODO: Open Profile screen
-            Toast.makeText(Dashboardscreen.this, "Profile clicked!", Toast.LENGTH_SHORT).show();
+            // 1. Create the Intent to move from the Dashboard to the Profile screen
+            Intent intent = new Intent(Dashboardscreen.this, ProfileActivity.class);
+
+            // 2. Start the activity
+            startActivity(intent);
         });
 
+
+        // In Dashboardscreen.java
+
         startSessionButton.setOnClickListener(v -> {
-            Toast.makeText(Dashboardscreen.this, "Starting Study Session...", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Dashboardscreen.this, AddStudyTaskActivity.class);
+            // Create an Intent to open the NEW and CORRECT AddStudyTaskActivity screen
+            Intent intent = new Intent(Dashboardscreen.this, nd.com.example.treefocus.data.MyTaskTable.data.AddStudyTaskActivity.class);
+
+            // Start the new screen
             startActivity(intent);
         });
 
@@ -61,5 +68,6 @@ public class Dashboardscreen extends AppCompatActivity {
         // You can dynamically set the streak here
         int currentStreak = 7; // Example value
         streakDaysText.setText(currentStreak + " Days");
+
     }
 }

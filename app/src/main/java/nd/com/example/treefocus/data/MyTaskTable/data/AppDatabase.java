@@ -1,3 +1,5 @@
+// الغرض من هذه class هو إنشاء وإدارة قاعدة البيانات الفعلية على الهاتف.
+// it connects all my tables (entities) and all my database rules (DAOs)
 package nd.com.example.treefocus.data.MyTaskTable.data;
 
 import android.content.Context;
@@ -13,12 +15,15 @@ import nd.com.example.treefocus.data.MyTaskTable.data.MyUserTable.StudentQuery;
 import nd.com.example.treefocus.signupscreen;
 
 @Database(entities = {Student.class, StudyTask.class}, version = 1, exportSchema = false)
-public abstract class AppDatabase extends RoomDatabase {
+public abstract class AppDatabase extends RoomDatabase {  //يخبر هذا Room بأن هذه الفئة هي التكوين الرئيسي لقاعدة البيانات.
+    // entities = {Student.class, StudyTask.class}: This part tells Room all the tables that should be included in this database. I have a Student table and a StudyTask table.
+    //extends RoomDatabase: This is a requirement for any Room database class. It must inherit from RoomDatabase.
     public abstract StudyTaskQuery studyTaskQuery();
+    // These abstract methods are how the rest of my app gets access to the DAOs
 
     private static AppDatabase dp;
 
-    public static AppDatabase getDatabase(Context context)
+    public static AppDatabase getDatabase(Context context) //its purpose is to make sure that only one instance of the database is ever created in the entire app.
     {
         if (dp == null)
         {
@@ -36,20 +41,18 @@ public abstract class AppDatabase extends RoomDatabase {
     // }
 
 
-    public abstract StudentQuery getStudentQuery(); // Keep this one
+    public abstract StudentQuery getStudentQuery(); //gives the DAO for student table
 
     // By adding public abstract StudentQuery studentQuery();, you are telling AppDatabase that it is responsible for providing access to the StudentQuery DAO.
-    // public abstract StudentQuery studentQuery(); // REMOVE THIS LINE
 
-    public static AppDatabase getInstance(Context context) {
+    public static AppDatabase getInstance(Context context) //: Your getInstance() method is doing the exact same job as your getDatabase() method.
+    {
         if (dp == null) {
-            // It's recommended to enable fallback to destructive migration for development
-            // and to use a more robust migration strategy for production apps.
             dp = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "app_database")
                     .fallbackToDestructiveMigration().allowMainThreadQueries() // Optional: but helpful during development
                     .build();
         }
-        return dp;
+        return dp; //Purpose: Creates a database named "koral_database" if one doesn't exist, then returns it.
     }
 // In AppDatabase.java
 

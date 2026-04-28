@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E1B1B">
+
+    <!-- Status Label -->
+    <TextView
+        android:id="@+id/tv_pomodoro_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="STAY FOCUSED"
+        android:textColor="#E58EBB"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Progress Circle (Decorative) -->
+    <View
+        android:id="@+id/circle_decoration"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/rounded_button_green"
+        android:backgroundTint="#1A334D3F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <!-- Countdown Timer -->
+    <TextView
+        android:id="@+id/tv_pomodoro_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50:00"
+        android:textColor="#FFFFFF"
+        android:textSize="72sp"
+        android:fontFamily="monospace"
+        app:layout_constraintBottom_toBottomOf="@id/circle_decoration"
+        app:layout_constraintEnd_toEndOf="@id/circle_decoration"
+        app:layout_constraintStart_toStartOf="@id/circle_decoration"
+        app:layout_constraintTop_toTopOf="@id/circle_decoration" />
+
+    <!-- Phase Subtitle -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Deep Work Phase"
+        android:textColor="#C8E6C9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/circle_decoration" />
+
+    <!-- Stop Button -->
+    <Button
+        android:id="@+id/btn_stop_pomodoro"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="64dp"
+        android:backgroundTint="#E58EBB"
+        android:text="Stop Session"
+        android:textAllCaps="false"
+        android:textColor="#1E1B1B"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

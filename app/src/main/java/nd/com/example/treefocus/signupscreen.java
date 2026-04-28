@@ -9,9 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-// Import your database classes that you already created
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import nd.com.example.treefocus.data.MyTaskTable.data.MyUserTable.Student;
 import nd.com.example.treefocus.data.MyTaskTable.data.AppDatabase;
 
@@ -28,7 +34,10 @@ public class signupscreen extends AppCompatActivity {
 
     // These lines connect your screen to your database
     private AppDatabase db;
-    private ExecutorService executorService;
+    private ExecutorService executorService; //todo gotta explain it
+    // This is a handler that allows you to run code on the main thread
+    // (the thread that displays your app's UI).
+    // It's used to update the UI from a background thread.
     private Handler mainThreadHandler;
 
     @Override
@@ -36,7 +45,7 @@ public class signupscreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signupscreen);
 
-        // Initialize YOUR database components
+        // settin up everything needed so my app can use the database.
         db = AppDatabase.getDatabase(this);
         executorService = Executors.newSingleThreadExecutor();
         mainThreadHandler = new Handler(Looper.getMainLooper());
@@ -69,7 +78,7 @@ public class signupscreen extends AppCompatActivity {
     private void checkUserAndSignUp(final String email, final String password) {
         // We call your existing 'checkEmail' method on a background thread
         executorService.execute(() -> {
-            Student existingStudent = db.getStudentQuery().checkEmail(email);
+            Student existingStudent = db.getStudentQuery().checkEmail(email); // CHECKS IN DATABASE
 
             mainThreadHandler.post(() -> {
                 if (existingStudent != null) {
@@ -82,12 +91,38 @@ public class signupscreen extends AppCompatActivity {
                     Student newStudent = new Student();
                     newStudent.email = email;
                     newStudent.passw = password; // Assuming the password field in your Student class is named 'passw'
+                    FirebaseAuth auth = FirebaseAuth.getInstance(); // line 1
+                    //FirebaseAuth.getInstance(): Connecting to the Cloud Security service.
+                  auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() { // line 2 , These lines are the "Cloud Security Guard." While your Room Database saves the user's info locally on the phone, Firebase Authentication saves the user's account in Google's secure cloud servers.
+                  // line 2 : If this succeeds, the email and password are now officially saved in your Firebase Console under the "Authentication" tab.
+                      //createUserWithEmailAndPassword(): Sending the credentials to Google's servers to create a permanent account.
+                      //addOnCompleteListener: A listener that waits for the internet response so the app doesn't freeze.
 
-                    // Insert the new student into the database
+                        @Override
+                       public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // This code ONLY runs AFTER Google says "I saved it!"
+                                Toast.makeText(signupscreen.this, "FB Task added successfully", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                // This code ONLY runs IF Google says "I couldn't save it!"
+                                Toast.makeText(signupscreen.this, "FB Failed to add task", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+
+
+
+
+                   });
                     executorService.execute(() -> {
+
                         db.getStudentQuery().insert(newStudent);
                         Toast.makeText(signupscreen.this, "Account Created Successfully!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(signupscreen.this, Dashboardscreen.class));
+
+
+
 
                     });
                 }
@@ -97,9 +132,8 @@ public class signupscreen extends AppCompatActivity {
 
     // Your existing validation method - no changes needed here, it's perfect
     private boolean validateInputs(String email, String password, String confirmPassword) {
-        edittext_email.setError(null);
-        editTextPassword.setError(null);
-        edittext_confirm_password.setError(null);
+        editTextPassword.setError(null);         // This method is used to clear any error messages that may have been set for the email EditText field.
+        edittext_confirm_password.setError(null);         // It is typically called when the user starts typing in the field again, to remove any previous error messages.
 
         boolean isValid = true;
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -116,5 +150,6 @@ public class signupscreen extends AppCompatActivity {
             isValid = false;
         }
         return isValid;
+
     }
 }

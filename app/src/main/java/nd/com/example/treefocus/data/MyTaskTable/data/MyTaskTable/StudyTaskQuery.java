@@ -1,4 +1,5 @@
 package nd.com.example.treefocus.data.MyTaskTable.data.MyTaskTable;
+// هذه واجهة تحدد جميع عمليات قاعدة البيانات المسموح بها لجدول StudyTask الخاص بك.
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao; // 1. Import the @Dao annotation
@@ -14,6 +15,11 @@ public interface StudyTaskQuery {
 
     @Query("SELECT * FROM StudyTask  ")
     List<StudyTask> getAllStudyTasks();
+    //This is a method that fetches all of the tasks from my database.
+    // The @Query annotation contains the SQL command.
+    // SELECT * means 'get every column',
+    // and FROM StudyTask specifies which table to get it from.
+    // It returns a List of StudyTask objects."
 
     @Query("SELECT * FROM StudyTask ORDER BY taskName DESC")
     List<StudyTask> getAllStudyTasksByName();

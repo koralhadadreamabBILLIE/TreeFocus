@@ -8,6 +8,7 @@ import java.util.List;
 
 import nd.com.example.treefocus.data.MyTaskTable.data.AppDatabase;
 
+// not used in my project. then why not delete it? i might use it later.
 public class StudyTaskRepository {
 
     private StudyTaskQuery studyTaskQuery;

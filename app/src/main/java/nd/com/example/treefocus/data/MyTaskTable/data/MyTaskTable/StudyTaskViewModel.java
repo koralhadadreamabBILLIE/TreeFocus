@@ -23,4 +23,7 @@ public class StudyTaskViewModel extends AndroidViewModel {
     public List<StudyTask> getAllTasks() {
         return allTasks;
     }
+
+    public void insert(StudyTask newTask) {
+    }
 }

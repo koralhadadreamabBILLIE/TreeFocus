@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void run() {
             Intent intent = new Intent(MainActivity.this, signinscreen.class);
+            // This line starts the 'signinscreen' activity after a delay of 3 seconds.
+            // It is used to show the sign-in screen to the user when the app starts.
             startActivity(intent);
         }
     };
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         handler.postDelayed(runnable, 3000);
     }
 
-    /// ljhkjh;lijl;kjlkjlk
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

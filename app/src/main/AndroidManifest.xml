@@ -15,7 +15,7 @@
             android:name=".data.MyTaskTable.data.AddStudyTaskActivity"
             android:exported="false" />
         <activity
-            android:name=".StudyListActvity"
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".Dashboardscreen"
@@ -23,11 +23,18 @@
         <activity
             android:name=".signupscreen"
             android:exported="false" />
-        <activity
-            android:name=".signupscreen"
-            android:exported="false" />
+
         <activity
             android:name=".signinscreen"
+            android:exported="false" />
+        <activity
+            android:name=".CustomTimerSessionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PomodoroSessionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StopwatchSessionActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
